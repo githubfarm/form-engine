@@ -1,24 +1,23 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '@/views/index/Home.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'home',
-    component: Home
+    name: 'designer',
+    component:  () => import('packages/designer/index')
   },
   {
     path: '/parser',
     name: 'parser',
-    component: () => import(/* webpackChunkName: "parser-example" */'@/components/parser/example/Index.vue')
+    component: () => import('packages/parser/index')
   },
   {
     path: '/tinymce',
     name: 'tinymce',
-    component: () => import(/* webpackChunkName: "tinymce-example" */'@/components/tinymce/example/Index.vue')
+    component: () => import('packages/tinymce/index')
   }, 
   {
     path: '*',

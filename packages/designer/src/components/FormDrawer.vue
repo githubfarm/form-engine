@@ -81,9 +81,9 @@ import ClipboardJS from 'clipboard'
 import { saveAs } from 'file-saver'
 import {
   makeUpHtml, vueTemplate, vueScript, cssStyle
-} from '@/components/generator/html'
-import { makeUpJs } from '@/components/generator/js'
-import { makeUpCss } from '@/components/generator/css'
+} from '@/core/generator/html'
+import { makeUpJs } from '@/core/generator/js'
+import { makeUpCss } from '@/core/generator/css'
 import { exportDefault, beautifierConf, titleCase } from '@/utils/index'
 import ResourceDialog from './ResourceDialog'
 import loadMonaco from '@/utils/loadMonaco'
@@ -291,7 +291,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '@/styles/mixin.scss';
+@import 'packages/theme-chalk/src/mixin.scss';
 .tab-editor {
   position: absolute;
   top: 33px;

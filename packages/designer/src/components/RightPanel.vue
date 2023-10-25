@@ -650,12 +650,12 @@
 
 <script>
 import { isArray } from 'util'
-import TreeNodeDialog from '@/views/index/TreeNodeDialog'
+import TreeNodeDialog from './TreeNodeDialog'
 import { isNumberStr } from '@/utils/index'
 import IconsDialog from './IconsDialog'
 import {
   inputComponents, selectComponents, layoutComponents
-} from '@/components/generator/config'
+} from '@/core/generator/config'
 import { saveFormConf } from '@/utils/db'
 
 const dateTimeFormat = {

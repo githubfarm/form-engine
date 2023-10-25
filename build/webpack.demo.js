@@ -17,8 +17,8 @@ const webpackConfig = {
   mode: process.env.NODE_ENV,
   // 入口
   entry: {
-    index: ['./src/views/index/main.js'],
-    preview: ['./src/views/preview/index.js']
+    demo: ['./examples/views/index/index.js'],
+    preview: ['./examples/views/preview/index.js']
   },
   // 输出
   output: {
@@ -119,10 +119,10 @@ const webpackConfig = {
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
       // 入口文件html模板
-      template: './public/index.tpl',
+      template: './public/demo.tpl',
       // 打包后的html文件名
-      filename: './index.html',
-      chunks: ['chunk-vendors', 'chunk-common', 'index'],
+      filename: './demo.html',
+      chunks: ['chunk-vendors', 'chunk-common', 'demo'],
     }),
     new HtmlWebpackPlugin({
       template: './public/preview.tpl',

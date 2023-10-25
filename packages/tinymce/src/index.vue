@@ -5,9 +5,10 @@
 </template>
 
 <script>
-import Tinymce from '../index.vue'
+import Tinymce from '@/components/tinymce/index.vue'
 
 export default {
+  name: 'FormTinymce',
   components: {
     Tinymce
   },

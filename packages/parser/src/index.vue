@@ -9,12 +9,13 @@
 </template>
 
 <script>
-import Parser from '../Parser'
+import Parser from '@/core/parser/Parser'
 
 // 若parser是通过安装npm方式集成到项目中的，使用此行引入
 // import Parser from 'form-gen-parser'
 
 export default {
+  name: 'FormParser',
   components: {
     Parser
   },

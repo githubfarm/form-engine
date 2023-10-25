@@ -131,7 +131,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '@/styles/mixin.scss';
+@import 'packages/theme-chalk/src/mixin.scss';
 
 ::v-deep .el-drawer__header {
   display: none;

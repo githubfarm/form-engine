@@ -3,7 +3,10 @@
     <div class="left-board">
       <div class="logo-wrapper">
         <div class="logo">
-          <img :src="logo" alt="logo"> Form Engine
+          <img :src="logo" alt="logo"> Form Generator
+          <a class="github" href="https://github.com/JakHuang/form-generator" target="_blank">
+            <img src="https://github.githubassets.com/pinned-octocat.svg" alt>
+          </a>
         </div>
       </div>
       <el-scrollbar class="left-scrollbar">
@@ -122,25 +125,25 @@ import draggable from 'vuedraggable'
 import { debounce } from 'throttle-debounce'
 import { saveAs } from 'file-saver'
 import ClipboardJS from 'clipboard'
-import render from '@/components/render/render'
-import FormDrawer from './FormDrawer'
-import JsonDrawer from './JsonDrawer'
-import RightPanel from './RightPanel'
+import render from '@/core/render/render'
+import FormDrawer from './components/FormDrawer'
+import JsonDrawer from './components/JsonDrawer'
+import RightPanel from './components/RightPanel'
 import {
   inputComponents, selectComponents, layoutComponents, formConf
-} from '@/components/generator/config'
+} from '@/core/generator/config'
 import {
   exportDefault, beautifierConf, isNumberStr, titleCase, deepClone, isObjectObject
 } from '@/utils/index'
 import {
   makeUpHtml, vueTemplate, vueScript, cssStyle
-} from '@/components/generator/html'
-import { makeUpJs } from '@/components/generator/js'
-import { makeUpCss } from '@/components/generator/css'
-import drawingDefalut from '@/components/generator/drawingDefalut'
+} from '@/core/generator/html'
+import { makeUpJs } from '@/core/generator/js'
+import { makeUpCss } from '@/core/generator/css'
+import drawingDefalut from '@/core/generator/drawingDefalut'
 import logo from '@/assets/logo.png'
-import CodeTypeDialog from './CodeTypeDialog'
-import DraggableItem from './DraggableItem'
+import CodeTypeDialog from './components/CodeTypeDialog'
+import DraggableItem from './components/DraggableItem'
 import {
   getDrawingList, saveDrawingList, getIdGlobal, saveIdGlobal, getFormConf
 } from '@/utils/db'
@@ -155,6 +158,7 @@ const formConfInDB = getFormConf()
 const idGlobal = getIdGlobal()
 
 export default {
+  name: 'FormDesigner',
   components: {
     draggable,
     render,
@@ -463,5 +467,5 @@ export default {
 </script>
 
 <style lang='scss'>
-@import '@/styles/home';
+@import 'packages/theme-chalk/src/designer.scss';
 </style>

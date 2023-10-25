@@ -18,8 +18,8 @@ const webpackConfig = {
   // 入口
   entry: {
     docs: ['./document/entry.js'],
-    demo: ['./src/views/index/index.js'],
-    preview: ['./src/views/preview/index.js']
+    demo: ['./examples/views/index/index.js'],
+    preview: ['./examples/views/preview/index.js']
   },
   // 输出
   output: {

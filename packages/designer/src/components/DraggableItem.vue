@@ -1,6 +1,6 @@
 <script>
 import draggable from 'vuedraggable'
-import render from '@/components/render/render'
+import render from '@/core/render/render'
 
 const components = {
   itemBtns(h, currentItem, index, list) {
