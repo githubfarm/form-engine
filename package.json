@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "serve": "cross-env NODE_ENV=development webpack-dev-server --config build/webpack.serve.js",
-    "dev": "cross-env NODE_ENV=development webpack-dev-server --config build/webpack.demo.js",
-    "build:serve": "rimraf dist && webpack --config build/webpack.serve.js",
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --config build/webpack.doc.js",
+    "demo": "cross-env NODE_ENV=development webpack-dev-server --config build/webpack.demo.js",
+    "build": "rimraf dist && webpack --config build/webpack.doc.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Michael",

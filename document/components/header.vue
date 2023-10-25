@@ -306,7 +306,7 @@
             <router-link active-class="active" :to="`/${lang}/component`">{{ langConfig.components }} </router-link>
           </li>
           <li class="nav-item">
-            
+            <a href="demo.html">项目预览</a>
           </li>
         </ul>
       </div>

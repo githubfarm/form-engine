@@ -16,14 +16,17 @@ const isProd = process.env.NODE_ENV === 'production';
 const webpackConfig = {
   mode: process.env.NODE_ENV,
   // 入口
-  entry: isProd ? {
-    docs: './document/entry.js'
-  } : ('./document/entry.js'),
+  entry: {
+    index: ['./src/views/index/main.js'],
+    preview: ['./src/views/preview/index.js']
+  },
   // 输出
   output: {
-    path: path.resolve(process.cwd(), './document/form/'),
-    publicPath: process.env.CI_ENV || '',
+    path: path.resolve(process.cwd(), './dist/demo/'),
+    publicPath: process.env.CI_ENV || '/',
+    // 打包后的js文件名
     filename: '[name].[hash:7].js',
+    // 文件分块
     chunkFilename: isProd ? '[name].[hash:7].js' : '[name].js'
   },
   // resolve 这个用来干嘛的？
@@ -114,11 +117,17 @@ const webpackConfig = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    // 入口文件index.html的模板
     new HtmlWebpackPlugin({
-      template: './document/index.tpl',
+      // 入口文件html模板
+      template: './public/index.tpl',
+      // 打包后的html文件名
       filename: './index.html',
-      favicon: './document/favicon.ico'
+      chunks: ['chunk-vendors', 'chunk-common', 'index'],
+    }),
+    new HtmlWebpackPlugin({
+      template: './public/preview.tpl',
+      filename: './preview.html',
+      chunks: ['chunk-vendors', 'chunk-common', 'preview'],
     }),
     // new CopyWebpackPlugin([
     //   { from: 'document/versions.json' }

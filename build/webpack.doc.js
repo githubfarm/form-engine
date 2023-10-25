@@ -12,19 +12,19 @@ const launchEditorMiddleware = require('launch-editor-middleware');
 const config = require('./config');
 
 const isProd = process.env.NODE_ENV === 'production';
-console.log("%c Line:15 🥝 isProd", "color:#3f7cff", isProd);
 
 const webpackConfig = {
   mode: process.env.NODE_ENV,
   // 入口
   entry: {
-    index: ['./src/views/index/main.js'],
+    docs: ['./document/entry.js'],
+    demo: ['./src/views/index/index.js'],
     preview: ['./src/views/preview/index.js']
   },
   // 输出
   output: {
-    path: path.resolve(process.cwd(), './dist/demo/'),
-    publicPath: process.env.CI_ENV || '/',
+    path: path.resolve(process.cwd(), './dist/doc/'),
+    publicPath: process.env.CI_ENV || '',
     // 打包后的js文件名
     filename: '[name].[hash:7].js',
     // 文件分块
@@ -118,12 +118,20 @@ const webpackConfig = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
+    // 入口文件index.html的模板
+    new HtmlWebpackPlugin({
+      template: './document/index.tpl',
+      filename: './index.html',
+      favicon: './document/favicon.ico',
+      chunks: ['chunk-vendors', 'chunk-common', 'docs'],
+    }),
     new HtmlWebpackPlugin({
       // 入口文件html模板
-      template: './public/index.tpl',
+      template: './public/demo.tpl',
       // 打包后的html文件名
-      filename: './index.html',
-      chunks: ['chunk-vendors', 'chunk-common', 'index'],
+      filename: './demo.html',
+      // 引入的js
+      chunks: ['chunk-vendors', 'chunk-common', 'demo'],
     }),
     new HtmlWebpackPlugin({
       template: './public/preview.tpl',
