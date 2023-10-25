@@ -654,7 +654,8 @@ import TreeNodeDialog from './dialog/TreeNodeDialog'
 import { isNumberStr } from '@/utils/index'
 import IconsDialog from './dialog/IconsDialog'
 import {
-  inputComponents, selectComponents, layoutComponents
+  basisComponents,
+  highComponents
 } from '@/core/generator/config'
 import { saveFormConf } from '@/utils/db'
 
@@ -795,12 +796,12 @@ export default {
     tagList() {
       return [
         {
-          label: '输入型组件',
-          options: inputComponents
+          label: '基础控件',
+          options: basisComponents
         },
         {
-          label: '选择型组件',
-          options: selectComponents
+          label: '高级控件',
+          options: highComponents
         }
       ]
     },
@@ -960,8 +961,8 @@ export default {
       this.activeData[this.currentIconModel] = val
     },
     tagChange(tagIcon) {
-      let target = inputComponents.find(item => item.__config__.tagIcon === tagIcon)
-      if (!target) target = selectComponents.find(item => item.__config__.tagIcon === tagIcon)
+      let target = basisComponents.find(item => item.__config__.tagIcon === tagIcon)
+      if (!target) target = highComponents.find(item => item.__config__.tagIcon === tagIcon)
       this.$emit('tag-change', target)
     },
     changeRenderKey() {

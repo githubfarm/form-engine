@@ -127,7 +127,9 @@ import FormDrawer from './components/FormDrawer'
 import JsonDrawer from './components/JsonDrawer'
 import RightPanel from './components/RightPanel'
 import {
-  inputComponents, selectComponents, layoutComponents, formConf
+  basisComponents,
+  highComponents,
+  formConf
 } from '@/core/generator/config'
 import {
   exportDefault, beautifierConf, isNumberStr, titleCase, deepClone, isObjectObject
@@ -170,9 +172,8 @@ export default {
       logo,
       idGlobal,
       formConf,
-      inputComponents,
-      selectComponents,
-      layoutComponents,
+      basisComponents,
+      highComponents,
       labelWidth: 100,
       drawingList: drawingDefalut,
       drawingData: {},
@@ -188,16 +189,12 @@ export default {
       saveIdGlobalDebounce: debounce(340, saveIdGlobal),
       leftComponents: [
         {
-          title: '输入型组件',
-          list: inputComponents
+          title: '基础控件',
+          list: basisComponents
         },
         {
-          title: '选择型组件',
-          list: selectComponents
-        },
-        {
-          title: '布局型组件',
-          list: layoutComponents
+          title: '高级控件',
+          list: highComponents
         }
       ]
     }

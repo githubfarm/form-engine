@@ -1,19 +1,5 @@
-// 表单属性【右面板】
-export const formConf = {
-  formRef: 'elForm',
-  formModel: 'formData',
-  size: 'medium',
-  labelPosition: 'right',
-  labelWidth: 100,
-  formRules: 'rules',
-  gutter: 15,
-  disabled: false,
-  span: 24,
-  formBtns: true
-}
-
-// 输入型组件 【左面板】
-export const inputComponents = [
+// basis components【left】
+export const basisComponents = [
   {
     // 组件的自定义配置
     __config__: {
@@ -128,29 +114,6 @@ export const inputComponents = [
     'controls-position': '',
     disabled: false
   },
-  {
-    __config__: {
-      label: '编辑器',
-      showLabel: true,
-      changeTag: true,
-      labelWidth: null,
-      tag: 'tinymce',
-      tagIcon: 'rich-text',
-      defaultValue: null,
-      span: 24,
-      layout: 'colFormItem',
-      required: true,
-      regList: [],
-      document: 'http://tinymce.ax-z.cn'
-    },
-    placeholder: '请输入',
-    height: 300, // 编辑器高度
-    branding: false // 隐藏右下角品牌烙印
-  }
-]
-
-// 选择型组件 【左面板】
-export const selectComponents = [
   {
     __config__: {
       label: '下拉选择',
@@ -479,6 +442,52 @@ export const selectComponents = [
   },
   {
     __config__: {
+      label: '按钮',
+      showLabel: true,
+      changeTag: true,
+      labelWidth: null,
+      tag: 'el-button',
+      tagIcon: 'button',
+      span: 24,
+      layout: 'colFormItem',
+      document: 'https://element.eleme.cn/#/zh-CN/component/button'
+    },
+    __slot__: {
+      default: '主要按钮'
+    },
+    type: 'primary',
+    icon: 'el-icon-search',
+    round: false,
+    size: 'medium',
+    plain: false,
+    circle: false,
+    disabled: false
+  }
+]
+
+// high components【left】
+export const highComponents = [
+  {
+    __config__: {
+      label: '编辑器',
+      showLabel: true,
+      changeTag: true,
+      labelWidth: null,
+      tag: 'tinymce',
+      tagIcon: 'rich-text',
+      defaultValue: null,
+      span: 24,
+      layout: 'colFormItem',
+      required: true,
+      regList: [],
+      document: 'http://tinymce.ax-z.cn'
+    },
+    placeholder: '请输入',
+    height: 300, // 编辑器高度
+    branding: false // 隐藏右下角品牌烙印
+  },
+  {
+    __config__: {
       label: '上传',
       tag: 'el-upload',
       tagIcon: 'upload',
@@ -506,11 +515,7 @@ export const selectComponents = [
     'auto-upload': true,
     'list-type': 'text',
     multiple: false
-  }
-]
-
-// 布局型组件 【左面板】
-export const layoutComponents = [
+  },
   {
     __config__: {
       layout: 'rowFormItem',
@@ -525,29 +530,6 @@ export const layoutComponents = [
   },
   {
     __config__: {
-      label: '按钮',
-      showLabel: true,
-      changeTag: true,
-      labelWidth: null,
-      tag: 'el-button',
-      tagIcon: 'button',
-      span: 24,
-      layout: 'colFormItem',
-      document: 'https://element.eleme.cn/#/zh-CN/component/button'
-    },
-    __slot__: {
-      default: '主要按钮'
-    },
-    type: 'primary',
-    icon: 'el-icon-search',
-    round: false,
-    size: 'medium',
-    plain: false,
-    circle: false,
-    disabled: false
-  },
-  {
-    __config__: {
       layout: 'colFormItem',
       tagIcon: 'table',
       tag: 'el-table',
@@ -559,7 +541,7 @@ export const layoutComponents = [
       showLabel: true,
       changeTag: true,
       labelWidth: null,
-      label: '表格[开发中]',
+      label: '表格',
       dataType: 'dynamic',
       method: 'get',
       dataPath: 'list',
@@ -627,3 +609,17 @@ export const layoutComponents = [
     align: 'top'
   }
 ]
+
+// from attribute【right panel】
+export const formConf = {
+  formRef: 'elForm',
+  formModel: 'formData',
+  size: 'medium',
+  labelPosition: 'right',
+  labelWidth: 100,
+  formRules: 'rules',
+  gutter: 15,
+  disabled: false,
+  span: 24,
+  formBtns: true
+}
