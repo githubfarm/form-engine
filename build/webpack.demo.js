@@ -119,13 +119,13 @@ const webpackConfig = {
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
       // 入口文件html模板
-      template: './public/demo.tpl',
+      template: 'examples/templates/demo.tpl',
       // 打包后的html文件名
       filename: './demo.html',
       chunks: ['chunk-vendors', 'chunk-common', 'demo'],
     }),
     new HtmlWebpackPlugin({
-      template: './public/preview.tpl',
+      template: 'examples/templates/preview.tpl',
       filename: './preview.html',
       chunks: ['chunk-vendors', 'chunk-common', 'preview'],
     }),

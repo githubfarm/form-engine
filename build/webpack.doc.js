@@ -122,21 +122,23 @@ const webpackConfig = {
     new HtmlWebpackPlugin({
       template: './document/index.tpl',
       filename: './index.html',
-      favicon: './document/favicon.ico',
       chunks: ['chunk-vendors', 'chunk-common', 'docs'],
+      favicon: './public/favicon.ico',
     }),
     new HtmlWebpackPlugin({
       // 入口文件html模板
-      template: './public/demo.tpl',
+      template: 'examples/templates/demo.tpl',
       // 打包后的html文件名
       filename: './demo.html',
       // 引入的js
       chunks: ['chunk-vendors', 'chunk-common', 'demo'],
+      favicon: './public/favicon.ico',
     }),
     new HtmlWebpackPlugin({
-      template: './public/preview.tpl',
+      template: 'examples/templates/preview.tpl',
       filename: './preview.html',
       chunks: ['chunk-vendors', 'chunk-common', 'preview'],
+      favicon: './public/favicon.ico',
     }),
     // new CopyWebpackPlugin([
     //   { from: 'document/versions.json' }

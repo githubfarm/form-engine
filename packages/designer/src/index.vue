@@ -3,10 +3,7 @@
     <div class="left-board">
       <div class="logo-wrapper">
         <div class="logo">
-          <img :src="logo" alt="logo"> Form Generator
-          <a class="github" href="https://github.com/JakHuang/form-generator" target="_blank">
-            <img src="https://github.githubassets.com/pinned-octocat.svg" alt>
-          </a>
+          <img :src="logo" alt="logo"> Form Engine
         </div>
       </div>
       <el-scrollbar class="left-scrollbar">
@@ -142,7 +139,7 @@ import { makeUpJs } from '@/core/generator/js'
 import { makeUpCss } from '@/core/generator/css'
 import drawingDefalut from '@/core/generator/drawingDefalut'
 import logo from '@/assets/logo.png'
-import CodeTypeDialog from './components/CodeTypeDialog'
+import CodeTypeDialog from './components/dialog/CodeTypeDialog'
 import DraggableItem from './components/DraggableItem'
 import {
   getDrawingList, saveDrawingList, getIdGlobal, saveIdGlobal, getFormConf

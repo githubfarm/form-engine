@@ -85,7 +85,7 @@ import {
 import { makeUpJs } from '@/core/generator/js'
 import { makeUpCss } from '@/core/generator/css'
 import { exportDefault, beautifierConf, titleCase } from '@/utils/index'
-import ResourceDialog from './ResourceDialog'
+import ResourceDialog from './dialog/ResourceDialog'
 import loadMonaco from '@/utils/loadMonaco'
 import loadBeautifier from '@/utils/loadBeautifier'
 

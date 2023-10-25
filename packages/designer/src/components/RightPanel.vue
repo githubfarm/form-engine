@@ -650,9 +650,9 @@
 
 <script>
 import { isArray } from 'util'
-import TreeNodeDialog from './TreeNodeDialog'
+import TreeNodeDialog from './dialog/TreeNodeDialog'
 import { isNumberStr } from '@/utils/index'
-import IconsDialog from './IconsDialog'
+import IconsDialog from './dialog/IconsDialog'
 import {
   inputComponents, selectComponents, layoutComponents
 } from '@/core/generator/config'
