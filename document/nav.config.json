@@ -14,10 +14,10 @@
       ]
     },
     {
-      "name": "组件",
+      "name": "控件",
       "groups": [
         {
-          "groupName": "",
+          "groupName": "基础控件",
           "list": [
             
           ]
