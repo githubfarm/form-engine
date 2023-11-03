@@ -79,7 +79,7 @@
   </el-scrollbar>
 </template>
 <script>
-import navsData from '../../nav.config.guide.json';
+import navsData from '../../router/nav.config.guide.json';
 export default {
   data() {
     return {
