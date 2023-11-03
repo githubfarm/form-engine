@@ -15,8 +15,8 @@ html, body {
 #app {
   height: 100%;
   
-  /* &.is-component {
-    overflow-y: hidden; */
+  /* &.is-component {*/
+    overflow-y: hidden; 
 
     .main-cnt {
       padding: 0;

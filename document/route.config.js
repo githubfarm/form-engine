@@ -1,4 +1,5 @@
 import navConfig from './nav.config';
+import navConfigGuide from './nav.config.guide';
 import langs from './i18n/route';
 
 const LOAD_MAP = {
@@ -25,16 +26,25 @@ const loadDocs = function(lang, path) {
   return LOAD_DOCS_MAP[lang](path);
 };
 
-const registerRoute = (navConfig) => {
+const registerRoute = (type, navConfig) => {
   let route = [];
   Object.keys(navConfig).forEach((lang, index) => {
     let navs = navConfig[lang];
-    route.push({
-      path: `/${ lang }/component`,
-      redirect: `/${ lang }/component/installation`,
-      component: load(lang, 'component'),
-      children: []
-    });
+    if(type === 'component') {
+      route.push({
+        path: `/${ lang }/component`,
+        redirect: `/${ lang }/component/common`,
+        component: load(lang, 'component'),
+        children: []
+      });
+    } else if(type === 'guide') {
+      route.push({
+        path: `/${ lang }/guide`,
+        redirect: `/${ lang }/guide/installation`,
+        component: load(lang, 'guide'),
+        children: []
+      });
+    }
     navs.forEach(nav => {
       if (nav.href) return;
       if (nav.groups) {
@@ -52,6 +62,7 @@ const registerRoute = (navConfig) => {
       }
     });
   });
+
   function addRoute(page, lang, index) {
     const component = page.path === '/changelog'
       ? load(lang, 'changelog')
@@ -66,45 +77,31 @@ const registerRoute = (navConfig) => {
       name: 'component-' + lang + (page.title || page.name),
       component: component.default || component
     };
-
+  
     route[index].children.push(child);
   }
 
   return route;
 };
 
-let route = registerRoute(navConfig);
+let route = registerRoute('component', navConfig);
+let routeGuide = registerRoute('guide', navConfigGuide);
 
 const generateMiscRoutes = function(lang) {
-  let guideRoute = {
-    path: `/${ lang }/guide`, // 指南
-    redirect: `/${ lang }/guide/basis`,
-    component: load(lang, 'guide'),
-    children: [{
-      path: 'basis', // 设计原则
-      name: 'guide-basis' + lang,
-      meta: { lang },
-      component: load(lang, 'basis')
-    }, {
-      path: 'nav', // 导航
-      name: 'guide-nav' + lang,
-      meta: { lang },
-      component: load(lang, 'nav')
-    }]
-  };
-
+  // homepage
   let indexRoute = {
-    path: `/${ lang }`, // 首页
+    path: `/${ lang }`,
     meta: { lang },
     name: 'home' + lang,
+    redirect: `/${ lang }/guide/installation`,
     component: load(lang, 'index')
   };
 
-  return [guideRoute, indexRoute];
+  return [indexRoute];
 };
 
 langs.forEach(lang => {
-  route = route.concat(generateMiscRoutes(lang.lang));
+  route = route.concat(routeGuide, generateMiscRoutes(lang.lang));
 });
 
 let defaultPath = '/zh-CN';
