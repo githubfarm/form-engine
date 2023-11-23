@@ -292,7 +292,7 @@
         <h1>
           <router-link :to="`/${lang}`">
             <slot>
-              <img src="" alt="" class="nav-logo" /><strong class="title">doc title</strong>
+              <img src="" alt="" class="nav-logo" /><strong class="title">Form Engine</strong>
             </slot>
           </router-link>
         </h1>
