@@ -82,10 +82,23 @@
             {
               "path": "/color",
               "title": "颜色选择"
-            },
+            }
+          ]
+        },
+        {
+          "groupName": "高级控件",
+          "list": [
             {
               "path": "/upload",
               "title": "上传"
+            },
+            {
+              "path": "/row",
+              "title": "行容器"
+            },
+            {
+              "path": "/table",
+              "title": "表格"
             }
           ]
         }
