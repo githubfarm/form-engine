@@ -44,16 +44,16 @@
         <el-button icon="el-icon-video-play" type="text" @click="run">
           运行
         </el-button>
-        <el-button icon="el-icon-view" type="text" @click="showJson">
-          查看json
+        <el-button v-if="createJson" icon="el-icon-view" type="text" @click="showJson">
+          生成json
         </el-button>
-        <el-button icon="el-icon-download" type="text" @click="download">
+        <el-button v-if="actionExport" icon="el-icon-download" type="text" @click="download">
           导出vue文件
         </el-button>
-        <el-button class="copy-btn-main" icon="el-icon-document-copy" type="text" @click="copy">
-          复制代码
+        <el-button v-if="createCode" class="copy-btn-main" icon="el-icon-document-copy" type="text" @click="copy">
+          生成代码
         </el-button>
-        <el-button class="delete-btn" icon="el-icon-delete" type="text" @click="empty">
+        <el-button v-if="clearable" class="delete-btn" icon="el-icon-delete" type="text" @click="empty">
           清空
         </el-button>
       </div>
@@ -167,13 +167,33 @@ export default {
     CodeTypeDialog,
     DraggableItem
   },
+  props: {
+    clearable: {
+      type: Boolean,
+      default: false
+    },
+    'create-json': {
+      type: Boolean,
+      default: false
+    },
+    'create-code': {
+      type: Boolean,
+      default: false
+    },
+    'action-export': {
+      type: Boolean,
+      default: false
+    },
+    'comp-fields': {
+      type: Array,
+      default: []
+    },
+  },
   data() {
     return {
       logo,
       idGlobal,
       formConf,
-      basisComponents,
-      highComponents,
       labelWidth: 100,
       drawingList: drawingDefalut,
       drawingData: {},
@@ -187,19 +207,27 @@ export default {
       activeData: drawingDefalut[0],
       saveDrawingListDebounce: debounce(340, saveDrawingList),
       saveIdGlobalDebounce: debounce(340, saveIdGlobal),
-      leftComponents: [
-        {
-          title: '基础控件',
-          list: basisComponents
-        },
-        {
-          title: '高级控件',
-          list: highComponents
-        }
-      ]
     }
   },
   computed: {
+    leftComponents() {
+      const baseList = basisComponents.filter(x => {
+        return this.compFields.find(y => y == x.__config__.tagIcon)
+      })
+      const higherList = highComponents.filter(x => {
+        return this.compFields.find(y => y == x.__config__.tagIcon)
+      })
+      return [
+        {
+          title: '基础控件',
+          list: baseList
+        },
+        {
+          title: '高级控件',
+          list: higherList
+        }
+      ]
+    }
   },
   watch: {
     // eslint-disable-next-line func-names

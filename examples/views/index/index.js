@@ -10,6 +10,9 @@ import elementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css';
 Vue.use(elementUI);
 
+import FormEngine from '@/index.js'
+Vue.use(FormEngine)
+
 Vue.component('tinymce', Tinymce)
 
 Vue.config.productionTip = false

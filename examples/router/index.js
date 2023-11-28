@@ -7,7 +7,7 @@ const routes = [
   {
     path: '/',
     name: 'designer',
-    component:  () => import('packages/designer/index')
+    component:  () => import('examples/views/designer/index')
   },
   {
     path: '/parser',
