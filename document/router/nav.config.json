@@ -1,0 +1,108 @@
+{
+  "zh-CN": [
+    {
+      "name": "控件指南",
+      "children": [
+        {
+          "path": "/common",
+          "name": "公共说明"
+        }
+      ]
+    },
+    {
+      "name": "控件",
+      "groups": [
+        {
+          "groupName": "基础控件",
+          "list": [
+            {
+              "path": "/button",
+              "title": "按钮"
+            },
+            {
+              "path": "/input",
+              "title": "单行文本"
+            },
+            {
+              "path": "/textarea",
+              "title": "多行文本"
+            },
+            {
+              "path": "/password",
+              "title": "密码"
+            },
+            {
+              "path": "/number",
+              "title": "计数器"
+            },
+            {
+              "path": "/select",
+              "title": "下拉选择"
+            },
+            {
+              "path": "/cascader",
+              "title": "级联选择"
+            },
+            {
+              "path": "/radio",
+              "title": "单选框组"
+            },
+            {
+              "path": "/checkbox",
+              "title": "多选框组"
+            },
+            {
+              "path": "/switch",
+              "title": "开关"
+            },
+            {
+              "path": "/slider",
+              "title": "滑块"
+            },
+            {
+              "path": "/time",
+              "title": "时间选择"
+            },
+            {
+              "path": "/timeRange",
+              "title": "时间范围"
+            },
+            {
+              "path": "/date",
+              "title": "日期选择"
+            },
+            {
+              "path": "/dateRange",
+              "title": "日期范围"
+            },
+            {
+              "path": "/rate",
+              "title": "评分"
+            },
+            {
+              "path": "/color",
+              "title": "颜色选择"
+            }
+          ]
+        },
+        {
+          "groupName": "高级控件",
+          "list": [
+            {
+              "path": "/upload",
+              "title": "上传"
+            },
+            {
+              "path": "/row",
+              "title": "行容器"
+            },
+            {
+              "path": "/table",
+              "title": "表格"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -131,25 +131,25 @@
 </style>
 <template>
   <el-scrollbar class="page-component__scroll" ref="componentScrollBar">
-  <div class="page-container page-component">
-    <el-scrollbar class="page-component__nav">
-      <side-nav :data="navsData[lang]" :base="`/${ lang }/component`"></side-nav>
-    </el-scrollbar>
-    <div class="page-component__content">
-      <router-view class="content"></router-view>
+    <div class="page-container page-component">
+      <el-scrollbar class="page-component__nav">
+        <side-nav :data="navsData[lang]" :base="`/${ lang }/component`"></side-nav>
+      </el-scrollbar>
+      <div class="page-component__content">
+        <router-view class="content"></router-view>
+      </div>
+      <el-backtop 
+        v-if="showBackToTop"
+        target=".page-component__scroll .el-scrollbar__wrap"
+        :right="100"
+        :bottom="150"
+      ></el-backtop>
     </div>
-    <el-backtop 
-      v-if="showBackToTop"
-      target=".page-component__scroll .el-scrollbar__wrap"
-      :right="100"
-      :bottom="150"
-    ></el-backtop>
-  </div>
   </el-scrollbar>
 </template>
 <script>
   import bus from '../../bus';
-  import navsData from '../../nav.config.json';
+  import navsData from '../../router/nav.config.json';
   import throttle from 'throttle-debounce/throttle';
 
   export default {
