@@ -41,8 +41,8 @@
 
     <div class="center-board">
       <div class="action-bar">
-        <el-button icon="el-icon-video-play" type="text" @click="run">
-          运行
+        <el-button v-if="createCode" icon="el-icon-video-play" type="text" @click="run">
+          生成代码
         </el-button>
         <el-button v-if="createJson" icon="el-icon-view" type="text" @click="showJson">
           生成json
@@ -50,12 +50,13 @@
         <el-button v-if="actionExport" icon="el-icon-download" type="text" @click="download">
           导出vue文件
         </el-button>
-        <el-button v-if="createCode" class="copy-btn-main" icon="el-icon-document-copy" type="text" @click="copy">
-          生成代码
-        </el-button>
+        <!-- <el-button v-if="createCode" class="copy-btn-main" icon="el-icon-document-copy" type="text" @click="copy">
+          复制代码
+        </el-button> -->
         <el-button v-if="clearable" class="delete-btn" icon="el-icon-delete" type="text" @click="empty">
           清空
         </el-button>
+        <slot name="action"></slot>
       </div>
       <el-scrollbar class="center-scrollbar">
         <el-row class="center-board-row" :gutter="formConf.gutter">

@@ -28,7 +28,11 @@
         'timeRange',
         'upload'
       ]"
-    ></FormDesigner>
+    >
+      <template slot="action">
+        <el-button type="text">保存</el-button>
+      </template>
+    </FormDesigner>
   </div>
 </template>
 

@@ -7,7 +7,7 @@
 ```html
 <template>
   <div>
-    <FormDesigner 
+    <FormDesigner
       clearable
       create-json
       create-code
@@ -40,4 +40,9 @@
 </template>
 ```
 
+### 插槽
+
+| Slot Name    | Descriptions | Default |
+| ------------ | ------------ | :-----: |
+| action       | 自定义操作栏 |         |
 
