@@ -98,14 +98,14 @@
 
     <form-drawer
       :visible.sync="drawerVisible"
-      :form-data="formData"
+      :form-data="innerFormData"
       size="100%"
       :generate-conf="generateConf"
     />
     <json-drawer
       size="60%"
       :visible.sync="jsonDrawerVisible"
-      :json-str="JSON.stringify(formData)"
+      :json-str="JSON.stringify(innerFormData)"
       @refresh="refreshJson"
     />
     <code-type-dialog
@@ -123,7 +123,6 @@ import draggable from 'vuedraggable'
 import { debounce } from 'throttle-debounce'
 import { saveAs } from 'file-saver'
 import ClipboardJS from 'clipboard'
-import render from '@/core/render/render'
 import FormDrawer from './components/FormDrawer'
 import JsonDrawer from './components/JsonDrawer'
 import RightPanel from './components/RightPanel'
@@ -161,7 +160,6 @@ export default {
   name: 'FormDesigner',
   components: {
     draggable,
-    render,
     FormDrawer,
     JsonDrawer,
     RightPanel,
@@ -187,8 +185,12 @@ export default {
     },
     'comp-fields': {
       type: Array,
-      default: []
+      default: () => []
     },
+    'formdata': {
+      type: Object,
+      default: () => {}
+    }
   },
   data() {
     return {
@@ -200,7 +202,7 @@ export default {
       drawingData: {},
       activeId: drawingDefalut[0].formId,
       drawerVisible: false,
-      formData: {},
+      innerFormData: {},
       dialogVisible: false,
       jsonDrawerVisible: false,
       generateConf: null,
@@ -231,6 +233,18 @@ export default {
     }
   },
   watch: {
+    'formdata': {
+      handler(val) {
+        if(val instanceof Object && Object.keys(val).length) {
+          this.innerFormData = val
+          this.setJson(val)
+        } else {
+          this.hasCache()
+        }
+      },
+      deep: true,
+      immediate: true
+    },
     // eslint-disable-next-line func-names
     'activeData.__config__.label': function (val, oldVal) {
       if (
@@ -263,34 +277,39 @@ export default {
     }
   },
   mounted() {
-    if (Array.isArray(drawingListInDB) && drawingListInDB.length > 0) {
-      this.drawingList = drawingListInDB
-    } else {
-      this.drawingList = drawingDefalut
-    }
-    this.activeFormItem(this.drawingList[0])
-    if (formConfInDB) {
-      this.formConf = formConfInDB
-    }
     loadBeautifier(btf => {
       beautifier = btf
     })
-    const clipboard = new ClipboardJS('#copyNode', {
-      text: trigger => {
-        const codeStr = this.generateCode()
-        this.$notify({
-          title: '成功',
-          message: '代码已复制到剪切板，可粘贴。',
-          type: 'success'
-        })
-        return codeStr
-      }
-    })
-    clipboard.on('error', e => {
-      this.$message.error('代码复制失败')
-    })
+    this.initClipboard()
   },
   methods: {
+    hasCache() { 
+      if (Array.isArray(drawingListInDB) && drawingListInDB.length > 0) {
+        this.drawingList = drawingListInDB
+      } else {
+        this.drawingList = drawingDefalut
+      }
+      this.activeFormItem(this.drawingList[0])
+      if (formConfInDB) {
+        this.formConf = formConfInDB
+      }
+    },
+    initClipboard() { 
+      const clipboard = new ClipboardJS('#copyNode', {
+        text: trigger => {
+          const codeStr = this.generateCode()
+          this.$notify({
+            title: '成功',
+            message: '代码已复制到剪切板，可粘贴。',
+            type: 'success'
+          })
+          return codeStr
+        }
+      })
+      clipboard.on('error', e => {
+        this.$message.error('代码复制失败')
+      })
+    },
     setObjectValueReduce(obj, strKeys, data) {
       const arr = strKeys.split('.')
       arr.reduce((pre, item, i) => {
@@ -377,8 +396,22 @@ export default {
       }
       return item
     },
+    setJson(json) { 
+      this.drawingList = json.fields
+      const formConfig = {
+        ...json
+      }
+      delete formConfig.fields
+      this.formConf = formConfig
+    },
+    getJson() { 
+      return {
+        fields: deepClone(this.drawingList),
+        ...this.formConf
+      }
+    },
     AssembleFormData() {
-      this.formData = {
+      this.innerFormData = {
         fields: deepClone(this.drawingList),
         ...this.formConf
       }
@@ -426,9 +459,9 @@ export default {
     generateCode() {
       const { type } = this.generateConf
       this.AssembleFormData()
-      const script = vueScript(makeUpJs(this.formData, type))
-      const html = vueTemplate(makeUpHtml(this.formData, type))
-      const css = cssStyle(makeUpCss(this.formData))
+      const script = vueScript(makeUpJs(this.innerFormData, type))
+      const html = vueTemplate(makeUpHtml(this.innerFormData, type))
+      const css = cssStyle(makeUpCss(this.innerFormData))
       return beautifier.html(html + script + css, beautifierConf.html)
     },
     showJson() {

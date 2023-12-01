@@ -5,9 +5,7 @@
       <el-tab-pane label="表单属性" name="form" />
     </el-tabs>
     <div class="field-box">
-      <a class="document-link" target="_blank" :href="documentLink" title="查看组件文档">
-        <i class="el-icon-link" />
-      </a>
+      
       <el-scrollbar class="right-scrollbar">
         <!-- 组件属性 -->
         <el-form v-show="currentTab==='field' && showField" size="small" label-width="90px">
@@ -1025,22 +1023,6 @@ export default {
   ::v-deep .el-icon-time {
     display: none;
   }
-}
-.document-link {
-  position: absolute;
-  display: block;
-  width: 26px;
-  height: 26px;
-  top: 0;
-  left: 0;
-  cursor: pointer;
-  background: #409eff;
-  z-index: 1;
-  border-radius: 0 0 6px 0;
-  text-align: center;
-  line-height: 26px;
-  color: #fff;
-  font-size: 18px;
 }
 .node-label{
   font-size: 14px;

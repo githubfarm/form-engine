@@ -15,7 +15,7 @@ export function getDrawingList() {
   }
 
   const str = localStorage.getItem(DRAWING_ITEMS)
-  if (str) return JSON.parse(str)
+  if (str === void 0) return JSON.parse(str)
   return null
 }
 
